@@ -1,0 +1,14 @@
+Soon
+* Control where the JavaScript is output to the page
+* Work with template tags in subfolders, e.g. {% from foo load bar %}
+* Add loading animation
+
+
+Someday
+* Work with a tag where takes_context = True
+* Work with Django models, not just pks
+* Send csrf_token
+* Add setting to force login on tag view
+* Add tag name whitelist to control which tags the view will send back html for
+* Put tag url in settings
+* Override loading animation on per tag basis

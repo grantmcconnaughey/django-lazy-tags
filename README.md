@@ -39,3 +39,10 @@ Becomes this:
     {% load lazy_tags %}
 
     {% lazy_tag 'my_tags.my_template_tag' arg1 arg2 kw1='hello' kw2='world' %}
+
+
+## Current Limitations
+
+* Does not work with tags that take content
+* Template tag arguments must be serializable
+* Template tag arguments are always strings

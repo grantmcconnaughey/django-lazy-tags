@@ -35,9 +35,10 @@ def lazy_tag(tag, *args, **kwargs):
         <script type="text/javascript">
             $(function() {{
                 $.ajax({{
-                    type="GET",
-                    url="{url}",
+                    type: "GET",
+                    url: "{url}",
                     data: {{
+                        tag: "{tag}",
                         args: {args},
                         kwargs: {kwargs},
                     }},
@@ -48,6 +49,7 @@ def lazy_tag(tag, *args, **kwargs):
             }});
         </script>
     """
-    html = html.format(id=id, url=url, args=args_str, kwargs=kwargs_str)
+    html = html.format(id=id, url=tag_url, tag=tag, args=args_str,
+        kwargs=kwargs_str)
 
     return html

@@ -17,7 +17,7 @@
 
     urlpatterns = patterns('',
         # ...
-        (r'^lazy_tags/', include('lazy_tags.urls')),
+        url(r'^lazy_tags/', include('lazy_tags.urls')),
     )
 
 ## Usage

@@ -39,7 +39,7 @@ def lazy_tag(tag, *args, **kwargs):
                     url: "{url}",
                     data: {{
                         tag: "{tag}",
-                        args: {args},
+                        args: JSON.stringify({args}),
                         kwargs: {kwargs},
                     }},
                     success: function(data) {{

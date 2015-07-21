@@ -8,7 +8,7 @@ def tag(request):
     lib, tag_name = request.GET['tag'].split('.')
 
     args_str = ''
-    args = request.GET.get('args')
+    args = request.GET.get('args', [])
     if args:
         args = json.loads(args)
         for arg in args:

@@ -40,7 +40,7 @@ def lazy_tag(context, tag, *args, **kwargs):
     }
 
     html = """
-        <div id="{id}">
+        <div id="{id}" class="lazy-tag-replace">
             <div class="lazy-tag-spinner-container"
                  style="width: 100%; text-align: center;">
                 <img id="{id}-spinner" class="lazy-tag-spinner"
@@ -82,7 +82,7 @@ def lazy_tags_javascript(context):
                 }},
                 success: function(data) {{
                     $('#{id}-spinner').hide();
-                    $('#{id}').html(data);
+                    $('#{id}').replaceWith(data);
                 }},
                 error: function(data) {{
                     $('#{id}-spinner').hide();

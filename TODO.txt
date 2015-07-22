@@ -7,9 +7,9 @@ Someday
 * Work with Django models, not just pks
 * Send csrf_token
 * Add setting to force login on tag view
-* Add setting to not use spinner
 * Add setting for custom error
 * Add tag name whitelist to control which tags the view will send back html for
 * Put tag url in settings
 * Override loading animation on per tag basis
 * Make default spinner gif transparent
+* Add setting to ues jQuery, prototype, or plain JavaScript for the AJAX request

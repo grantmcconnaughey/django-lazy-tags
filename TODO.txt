@@ -1,5 +1,4 @@
 Soon
-* Control where the JavaScript is output to the page
 * Work with template tags in subfolders, e.g. {% from foo load bar %}
 * Add loading animation
 

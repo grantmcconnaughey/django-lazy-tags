@@ -7,8 +7,8 @@ from django.core.urlresolvers import reverse
 register = template.Library()
 
 
-@register.simple_tag
-def lazy_tag(tag, *args, **kwargs):
+@register.simple_tag(takes_context=True)
+def lazy_tag(context, tag, *args, **kwargs):
     """
     Lazily loads a template tag after the page has loaded. Requires jQuery
     (for now).
@@ -25,31 +25,60 @@ def lazy_tag(tag, *args, **kwargs):
         *args: arguments to be passed to the template tag.
         **kwargs:  keyword arguments to be passed to the template tag.
     """
-    args_str = json.dumps(args or [])
-    kwargs_str = json.dumps(kwargs or {})
-    tag_url = reverse("lazy_tag")
-    id = str(uuid.uuid4())
+    c = context.dicts[0]
+    if not c.get('lazy_tag_data'):
+        c['lazy_tag_data'] = {}
 
-    html = """
-        <div id="{id}"></div>
-        <script type="text/javascript">
-            document.addEventListener("DOMContentLoaded", function(event) {{
-                $.ajax({{
-                    type: "GET",
-                    url: "{url}",
-                    data: {{
-                        tag: "{tag}",
-                        args: JSON.stringify({args}),
-                        kwargs: {kwargs},
-                    }},
-                    success: function(data) {{
-                        $('#{id}').html(data);
-                    }}
-                }});
+    id = str(uuid.uuid4())
+    c['lazy_tag_data'][id] = {
+        'tag': tag,
+        'args': args,
+        'kwargs': kwargs,
+    }
+
+    html = '<div id="{id}"></div>'.format(id=id)
+
+    return html
+
+
+@register.simple_tag(takes_context=True)
+def lazy_tags_javascript(context):
+    html = ''
+    tag_url = reverse("lazy_tag")
+
+    for tag_id, data in context.get('lazy_tag_data', {}).iteritems():
+        tag = data.get('tag')
+        args = data.get('args')
+        kwargs = data.get('kwargs')
+        args_str = json.dumps(args or [])
+        kwargs_str = json.dumps(kwargs or {})
+
+        if not html:
+            html = """
+                <script type="text/javascript">
+                    $(function() {
+            """
+
+        js = """
+            $.ajax({{
+                type: "GET",
+                url: "{url}",
+                data: {{
+                    tag: "{tag}",
+                    args: JSON.stringify({args}),
+                    kwargs: {kwargs},
+                }},
+                success: function(data) {{
+                    $('#{id}').html(data);
+                }}
             }});
-        </script>
-    """
-    html = html.format(
-        id=id, url=tag_url, tag=tag, args=args_str, kwargs=kwargs_str)
+        """
+        js = js.format(
+            id=tag_id, url=tag_url, tag=tag, args=args_str, kwargs=kwargs_str)
+
+        html += js
+
+    if html:
+        html += '});</script>'
 
     return html

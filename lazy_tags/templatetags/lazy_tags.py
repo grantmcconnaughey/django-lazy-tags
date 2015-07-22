@@ -1,6 +1,7 @@
 import json
 import uuid
 from django import template
+from django.conf import settings
 from django.core.urlresolvers import reverse
 
 
@@ -25,20 +26,31 @@ def lazy_tag(context, tag, *args, **kwargs):
         *args: arguments to be passed to the template tag.
         **kwargs:  keyword arguments to be passed to the template tag.
     """
+    # Gross hack to pollute the parent context so lazy_tag_data can be accessed
+    # from the lazy_tags_javascript tag
     c = context.dicts[0]
     if not c.get('lazy_tag_data'):
         c['lazy_tag_data'] = {}
 
-    id = str(uuid.uuid4())
-    c['lazy_tag_data'][id] = {
+    tag_id = str(uuid.uuid4())
+    c['lazy_tag_data'][tag_id] = {
         'tag': tag,
         'args': args,
         'kwargs': kwargs,
     }
 
-    html = '<div id="{id}"></div>'.format(id=id)
+    html = """
+        <div id="{id}">
+            <div class="lazy-tag-spinner-container"
+                 style="width: 100%; text-align: center;">
+                <img id="{id}-spinner" class="lazy-tag-spinner"
+                     style="width: 15px; height: 15px;"
+                     src="{static_url}img/lazy_tags/spinner.gif" />
+            </div>
+        </div>
+    """
 
-    return html
+    return html.format(id=tag_id, static_url=settings.STATIC_URL)
 
 
 @register.simple_tag(takes_context=True)
@@ -69,7 +81,11 @@ def lazy_tags_javascript(context):
                     kwargs: {kwargs},
                 }},
                 success: function(data) {{
+                    $('#{id}-spinner').hide();
                     $('#{id}').html(data);
+                }},
+                error: function(data) {{
+                    $('#{id}-spinner').hide();
                 }}
             }});
         """

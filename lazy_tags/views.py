@@ -11,6 +11,6 @@ def tag(request):
                         request.GET.get('args'),
                         request.GET.get('kwargs'))
     t = template.Template(html)
-    c = template.Context()
+    c = template.RequestContext(request)
 
     return HttpResponse(t.render(c))

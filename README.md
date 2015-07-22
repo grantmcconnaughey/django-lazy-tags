@@ -43,6 +43,7 @@ Becomes this:
 
 ## Current Limitations
 
-* Does not work with tags that take content
+* jQuery required for the the AJAX calls
+* Does not work with tags that take context
 * Template tag arguments must be serializable
 * Template tag arguments are always strings

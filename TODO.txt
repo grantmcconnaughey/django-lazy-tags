@@ -8,6 +8,5 @@ Someday
 * Send csrf_token
 * Add setting to force login on tag view
 * Add tag name whitelist to control which tags the view will send back html for
-* Put tag url in settings
 * Make default spinner gif transparent
 * Add setting to ues jQuery, prototype, or plain JavaScript for the AJAX request

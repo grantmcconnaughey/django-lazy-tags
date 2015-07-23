@@ -9,7 +9,7 @@ from django.core.urlresolvers import reverse
 register = template.Library()
 
 
-@register.inclusion_tag('lazy_tags/lazy_tag.html', takes_context=True)
+@register.simple_tag(takes_context=True)
 def lazy_tag(context, tag, *args, **kwargs):
     """
     Lazily loads a template tag after the page has loaded. Requires jQuery
@@ -40,13 +40,13 @@ def lazy_tag(context, tag, *args, **kwargs):
         'kwargs': json.dumps(kwargs or {}),
     }
 
-    return {
+    return render_to_string('lazy_tags/lazy_tag.html', {
         'id': tag_id,
         'STATIC_URL': settings.STATIC_URL,
-    }
+    })
 
 
-@register.inclusion_tag('lazy_tags/lazy_tags_js.html', takes_context=True)
+@register.simple_tag(takes_context=True)
 def lazy_tags_js(context):
     """Outputs the necessary JavaScript to load tags over AJAX."""
     tag_url = reverse("lazy_tag")
@@ -55,8 +55,8 @@ def lazy_tags_js(context):
     if hasattr(settings, 'LAZY_TAGS_ERROR_MESSAGE'):
         error_message = getattr(settings, 'LAZY_TAGS_ERROR_MESSAGE')
 
-    return {
+    return render_to_string('lazy_tags/lazy_tags_js.html', {
         'lazy_tag_data': lazy_tag_data,
         'tag_url': tag_url,
         'error_message': error_message,
-    }
+    })

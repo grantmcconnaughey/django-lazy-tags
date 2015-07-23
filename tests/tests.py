@@ -3,8 +3,6 @@ import json
 from django.test import TestCase
 from django.core.urlresolvers import reverse
 
-from lazy_tags.templatetags.lazy_tags import lazy_tag
-
 
 class LazyTagsViewTests(TestCase):
 

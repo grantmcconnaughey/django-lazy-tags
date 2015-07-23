@@ -1,6 +1,7 @@
 import json
 import uuid
 from django import template
+from django.template.loader import render_to_string
 from django.conf import settings
 from django.core.urlresolvers import reverse
 
@@ -8,7 +9,7 @@ from django.core.urlresolvers import reverse
 register = template.Library()
 
 
-@register.simple_tag(takes_context=True)
+@register.inclusion_tag('lazy_tags/lazy_tag.html', takes_context=True)
 def lazy_tag(context, tag, *args, **kwargs):
     """
     Lazily loads a template tag after the page has loaded. Requires jQuery
@@ -35,66 +36,22 @@ def lazy_tag(context, tag, *args, **kwargs):
     tag_id = str(uuid.uuid4())
     c['lazy_tag_data'][tag_id] = {
         'tag': tag,
-        'args': args,
-        'kwargs': kwargs,
+        'args': json.dumps(args or []),
+        'kwargs': json.dumps(kwargs or {}),
     }
 
-    html = """
-        <div id="{id}" class="lazy-tag-replace">
-            <div class="lazy-tag-spinner-container"
-                 style="width: 100%; text-align: center;">
-                <img id="{id}-spinner" class="lazy-tag-spinner"
-                     style="width: 15px; height: 15px;"
-                     src="{static_url}img/lazy_tags/spinner.gif" />
-            </div>
-        </div>
-    """
-
-    return html.format(id=tag_id, static_url=settings.STATIC_URL)
+    return {
+        'id': tag_id,
+        'STATIC_URL': settings.STATIC_URL,
+    }
 
 
-@register.simple_tag(takes_context=True)
-def lazy_tags_javascript(context):
-    html = ''
+@register.inclusion_tag('lazy_tags/lazy_tags_js.html', takes_context=True)
+def lazy_tags_js(context):
     tag_url = reverse("lazy_tag")
+    lazy_tag_data = context.get('lazy_tag_data')
 
-    for tag_id, data in context.get('lazy_tag_data', {}).iteritems():
-        tag = data.get('tag')
-        args = data.get('args')
-        kwargs = data.get('kwargs')
-        args_str = json.dumps(args or [])
-        kwargs_str = json.dumps(kwargs or {})
-
-        if not html:
-            html = """
-                <script type="text/javascript">
-                    $(function() {
-            """
-
-        js = """
-            $.ajax({{
-                type: "GET",
-                url: "{url}",
-                data: {{
-                    tag: "{tag}",
-                    args: JSON.stringify({args}),
-                    kwargs: {kwargs},
-                }},
-                success: function(data) {{
-                    $('#{id}-spinner').hide();
-                    $('#{id}').replaceWith(data);
-                }},
-                error: function(data) {{
-                    $('#{id}-spinner').hide();
-                }}
-            }});
-        """
-        js = js.format(
-            id=tag_id, url=tag_url, tag=tag, args=args_str, kwargs=kwargs_str)
-
-        html += js
-
-    if html:
-        html += '});</script>'
-
-    return html
+    return {
+        'lazy_tag_data': lazy_tag_data,
+        'tag_url': tag_url,
+    }

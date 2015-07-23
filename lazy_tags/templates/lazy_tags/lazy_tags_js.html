@@ -1,0 +1,22 @@
+<script type="text/javascript">
+    $(function() {
+        {% for tag_id, data in lazy_tag_data.items %}
+            $.ajax({
+                type: "GET",
+                url: "{{ tag_url }}",
+                data: {
+                    tag: "{{ data.tag }}",
+                    args: JSON.stringify({{ data.args }}),
+                    kwargs: {{ data.kwargs }},
+                },
+                success: function(data) {
+                    $('#{{ tag_id }}-spinner').hide();
+                    $('#{{ tag_id }}').replaceWith(data);
+                },
+                error: function(data) {
+                    $('#{{ tag_id }}-spinner').hide();
+                }
+            });
+        {% endfor %}
+    });
+</script>

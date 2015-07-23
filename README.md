@@ -30,15 +30,19 @@ urlpatterns = patterns('',
 
 First, load the `lazy_tags` library in your templates.
 
-    {% load lazy_tags %}
+```htmldjango
+{% load lazy_tags %}
+```
 
 Then, call the `lazy_tag` template tag passing your tag name as the first parameter. The format is `tag_library.tag_name` where `tag_library` is what you would load at the top of the page (e.g. `my_tags`) and `tag_name` is the name of your template tag (e.g. `my_template_tag`). After the first argument to `lazy_tag` simply pass the rest of the args and kwargs just as you would pass them to your own tag.
 
 This:
 
-    {% load my_tags %}
+```htmldjango
+{% load my_tags %}
 
-    {% my_template_tag arg1 arg2 kw1='hello' kw2='world' %}
+{% my_template_tag arg1 arg2 kw1='hello' kw2='world' %}
+```
 
 Becomes this:
 
@@ -46,6 +50,37 @@ Becomes this:
 {% load lazy_tags %}
 
 {% lazy_tag 'my_tags.my_template_tag' arg1 arg2 kw1='hello' kw2='world' %}
+```
+
+After placing your template tags in the template you still need to specify where you would like the AJAX JavaScript to output to the page. That is what the `lazy_tags_js` tag is for:
+
+```htmldjango
+{% lazy_tags_js %}
+```
+
+This will spit out the JavaScript:
+
+```html
+<script type="text/javascript">
+    $(function() {
+        $.ajax({
+            type: "GET",
+            url: "{{ tag_url }}",
+            data: {
+                tag: "{{ data.tag }}",
+                args: JSON.stringify({{ tag.args }}),
+                kwargs: {{ tag.kwargs }},
+            },
+            success: function(data) {
+                $('#{{ tag_id }}-spinner').hide();
+                $('#{{ tag_id }}').replaceWith(data);
+            },
+            error: function(data) {
+                $('#{{ tag_id }}-spinner').hide();
+            }
+        });
+    });
+</script>
 ```
 
 

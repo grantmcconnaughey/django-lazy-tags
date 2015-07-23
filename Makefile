@@ -6,3 +6,6 @@ export PYTHONPATH=.
 test:
 	coverage run --source=lazy_tags `which django-admin.py` test tests
 	coverage report
+
+runserver:
+	`which django-admin.py` runserver

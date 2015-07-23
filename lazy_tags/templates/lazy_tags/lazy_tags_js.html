@@ -1,3 +1,4 @@
+{% autoescape off %}
 <script type="text/javascript">
     $(function() {
         {% for tag_id, data in lazy_tag_data.items %}
@@ -7,7 +8,7 @@
                 data: {
                     tag: "{{ data.tag }}",
                     args: JSON.stringify({{ data.args }}),
-                    kwargs: {{ data.kwargs }},
+                    kwargs: JSON.stringify({{ data.kwargs }}),
                 },
                 success: function(data) {
                     $('#{{ tag_id }}-spinner').hide();
@@ -15,8 +16,10 @@
                 },
                 error: function(data) {
                     $('#{{ tag_id }}-spinner').hide();
+                    $('#{{ tag_id }}').replaceWith('{{ error_message }}');
                 }
             });
         {% endfor %}
     });
 </script>
+{% endautoescape %}

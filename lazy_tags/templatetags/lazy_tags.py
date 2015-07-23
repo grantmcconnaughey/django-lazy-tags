@@ -48,10 +48,15 @@ def lazy_tag(context, tag, *args, **kwargs):
 
 @register.inclusion_tag('lazy_tags/lazy_tags_js.html', takes_context=True)
 def lazy_tags_js(context):
+    """Outputs the necessary JavaScript to load tags over AJAX."""
     tag_url = reverse("lazy_tag")
     lazy_tag_data = context.get('lazy_tag_data')
+    error_message = 'An error occurred.'
+    if hasattr(settings, 'LAZY_TAGS_ERROR_MESSAGE'):
+        error_message = getattr(settings, 'LAZY_TAGS_ERROR_MESSAGE')
 
     return {
         'lazy_tag_data': lazy_tag_data,
         'tag_url': tag_url,
+        'error_message': error_message,
     }

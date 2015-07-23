@@ -1,0 +1,45 @@
+{% load lazy_tags %}
+<html>
+<head>
+    <title>Lazy tags tests</title>
+    <style>
+        body > div {
+            width: 33%;
+            border-radius: 4px;
+            border: 1px solid #999;
+            padding: 1em;
+            box-sizing: border-box;
+            text-align: center;
+            display: inline-block;
+            vertical-align: top;
+            margin-bottom: 1em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lazy tags tests</h1>
+
+    <div>
+        <h2>Test</h2>
+        {% lazy_tag 'test_tags.test' %}
+    </div>
+
+    <div>
+        <h2>Test with Sleep</h2>
+        {% lazy_tag 'test_tags.test_with_sleep' %}
+    </div>
+
+    <div>
+        <h2>Test with args</h2>
+        {% lazy_tag 'test_tags.test_with_args' 123 kwarg='hello' %}
+    </div>
+
+    <div>
+        <h2>Test with errors</h2>
+        {% lazy_tag 'test_tags.test_with_args' %}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    {% lazy_tags_js %}
+</body>
+</html>

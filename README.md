@@ -55,7 +55,9 @@ Becomes this:
 After placing your template tags in the template you still need to specify where you would like the AJAX JavaScript to output to the page. That is what the `lazy_tags_js` tag is for:
 
 ```htmldjango
-{% lazy_tags_js %}
+{% block js-additional %}
+  {% lazy_tags_js%}
+{% endblock %}
 ```
 
 This will spit out the JavaScript:
@@ -84,6 +86,13 @@ This will spit out the JavaScript:
 ```
 
 
+## Configuration
+
+### LAZY_TAGS_ERROR_MESSAGE
+
+The error message to display if the AJAX request fails. Defaults to 'An error occurred.'
+
+
 ## Customizing the Loading Animation
 
 This is the default HTML on the page before the AJAX request completes:
@@ -104,7 +113,7 @@ To customize the loading animation, override the `lazy-tag-replace`, `lazy-tag-s
 
 ## Current Limitations
 
-* jQuery required for the the AJAX calls
+* jQuery is required for the the AJAX calls. You must have jQuery loaded on the page before calling `lazy_tags_js`.
 * Does not work with tags that take context
 * Template tag arguments must be serializable
-* Template tag arguments are always strings
+* Template tag arguments are always passed in as strings. If your tag requires an argument to be an `int` then be sure to cast it to an `int` before usage.

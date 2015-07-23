@@ -6,7 +6,14 @@ register = template.Library()
 
 @register.simple_tag
 def test():
-    return 'hello world'
+    return '<p>hello world</p>'
+
+
+@register.simple_tag
+def test_with_sleep():
+    import time
+    time.sleep(3)
+    return '<p>done sleeping</p>'
 
 
 @register.inclusion_tag('tests/inclusion_tag_with_args.html')

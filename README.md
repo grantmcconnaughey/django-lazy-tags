@@ -4,21 +4,27 @@
 
 1\. Install via pip
 
-    pip install django-lazy-tags
+```python
+pip install django-lazy-tags
+```
 
 2\. Add to installed apps
 
-    INSTALLED_APPS = (
-        # ...
-        'lazy_tags',
-    )
+```python
+INSTALLED_APPS = (
+    # ...
+    'lazy_tags',
+)
+```
 
 3\. Add the lazy tags urls to your root urlconf.
 
-    urlpatterns = patterns('',
-        # ...
-        url(r'^lazy_tags/', include('lazy_tags.urls')),
-    )
+```python
+urlpatterns = patterns('',
+    # ...
+    url(r'^lazy_tags/', include('lazy_tags.urls')),
+)
+```
 
 ## Usage
 

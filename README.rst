@@ -9,62 +9,62 @@ Installation
 
 1\. Install via pip
 
-```python
-pip install django-lazy-tags
-```
+.. code-block:: python
+
+    pip install django-lazy-tags
 
 2\. Add to installed apps
 
-```python
-INSTALLED_APPS = (
-    # ...
-    'lazy_tags',
-)
-```
+.. code-block:: python
+
+    INSTALLED_APPS = (
+        # ...
+        'lazy_tags',
+    )
 
 3\. Add the lazy tags urls to your root urlconf.
 
-```python
-urlpatterns = patterns('',
-    # ...
-    url(r'^lazy_tags/', include('lazy_tags.urls')),
-)
-```
+.. code-block:: python
+
+    urlpatterns = patterns('',
+        # ...
+        url(r'^lazy_tags/', include('lazy_tags.urls')),
+    )
 
 Usage
 -----
 
 First, load the `lazy_tags` library in your templates.
 
-```htmldjango
-{% load lazy_tags %}
-```
+.. code-block:: django
+
+    {% load lazy_tags %}
 
 Then, call the `lazy_tag` template tag passing your tag name as the first parameter. The format is `tag_library.tag_name` where `tag_library` is what you would load at the top of the page (e.g. `my_tags`) and `tag_name` is the name of your template tag (e.g. `my_template_tag`). After the first argument to `lazy_tag` simply pass the rest of the args and kwargs just as you would pass them to your own tag.
 
 This:
 
-```htmldjango
-{% load my_tags %}
+.. code-block:: django
 
-{% my_template_tag arg1 arg2 kw1='hello' kw2='world' %}
-```
+    {% load my_tags %}
+
+    {% my_template_tag arg1 arg2 kw1='hello' kw2='world' %}
 
 Becomes this:
 
-```htmldjango
-{% load lazy_tags %}
+.. code-block:: django
 
-{% lazy_tag 'my_tags.my_template_tag' arg1 arg2 kw1='hello' kw2='world' %}
-```
+    {% load lazy_tags %}
+
+    {% lazy_tag 'my_tags.my_template_tag' arg1 arg2 kw1='hello' kw2='world' %}
 
 After placing your template tags in the template you still need to specify where you would like the AJAX JavaScript to output to the page. That is what the `lazy_tags_js` tag is for:
 
-```htmldjango
-{% block js-additional %}
-  {% lazy_tags_js%}
-{% endblock %}
-```
+.. code-block:: django
+
+    {% block js-additional %}
+      {% lazy_tags_js%}
+    {% endblock %}
 
 This will spit out the JavaScript:
 

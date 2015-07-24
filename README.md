@@ -1,5 +1,7 @@
 # django-lazy-tags
 
+[![Build Status](https://travis-ci.org/grantmcconnaughey/django-lazy-tags.svg)](https://travis-ci.org/grantmcconnaughey/django-lazy-tags)
+
 ## Installation
 
 1\. Install via pip

@@ -1,8 +1,11 @@
-# django-lazy-tags
+django-lazy-tags
+================
 
-[![Build Status](https://travis-ci.org/grantmcconnaughey/django-lazy-tags.svg)](https://travis-ci.org/grantmcconnaughey/django-lazy-tags)
+.. image:: https://travis-ci.org/grantmcconnaughey/django-lazy-tags.svg
+    :target: https://travis-ci.org/grantmcconnaughey/django-lazy-tags
 
-## Installation
+Installation
+------------
 
 1\. Install via pip
 
@@ -28,7 +31,8 @@ urlpatterns = patterns('',
 )
 ```
 
-## Usage
+Usage
+-----
 
 First, load the `lazy_tags` library in your templates.
 
@@ -86,15 +90,15 @@ This will spit out the JavaScript:
 </script>
 ```
 
+Settings
+--------
 
-## Configuration
-
-### LAZY_TAGS_ERROR_MESSAGE
-
-The error message to display if the AJAX request fails. Defaults to 'An error occurred.'
+LAZY_TAGS_ERROR_MESSAGE
+    The error message to display if the AJAX request fails. Defaults to 'An error occurred.'
 
 
-## Customizing the Loading Animation
+Customizing the Loading Animation
+---------------------------------
 
 This is the default HTML on the page before the AJAX request completes:
 
@@ -112,7 +116,8 @@ This is the default HTML on the page before the AJAX request completes:
 To customize the loading animation, override the `lazy-tag-replace`, `lazy-tag-spinner-container`, or `lazy-tag-spinner` classes in your CSS.
 
 
-## Current Limitations
+Current Limitations
+-------------------
 
 * jQuery is required for the the AJAX calls. You must have jQuery loaded on the page before calling `lazy_tags_js`.
 * Does not work with tags that take context

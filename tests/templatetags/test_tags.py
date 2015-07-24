@@ -12,8 +12,8 @@ def test():
 @register.simple_tag
 def test_with_sleep():
     import time
-    time.sleep(3)
-    return '<p>done sleeping</p>'
+    time.sleep(2)
+    return '<ul style="text-align: left;"><li>Steve Jobs</li><li>Bill Gates</li><li>Elon Musk</li></ul>'
 
 
 @register.inclusion_tag('tests/inclusion_tag_with_args.html')

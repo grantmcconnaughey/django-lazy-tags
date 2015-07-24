@@ -1,4 +1,4 @@
-'Soon
+Soon
 * Work with template tags in subfolders, e.g. {% from foo load bar %}
 
 
@@ -6,7 +6,6 @@ Someday
 * Work with a tag where takes_context = True
 * Work with Django models, not just pks
 * Send csrf_token
-* Add setting to force login on tag view
 * Add tag name whitelist to control which tags the view will send back html for
 * Make default spinner gif transparent
-* Add setting to ues jQuery, prototype, or plain JavaScript for the AJAX request
+* Add setting to ues jQuery, Prototype, or plain JavaScript for the AJAX request

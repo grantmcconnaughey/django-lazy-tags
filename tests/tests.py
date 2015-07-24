@@ -1,5 +1,6 @@
 import json
 
+from django.contrib.auth.models import User
 from django.test import TestCase
 from django.test.utils import override_settings
 from django.core.urlresolvers import reverse
@@ -45,6 +46,27 @@ class LazyTagsViewTests(TestCase):
         response = self.client.get(url, {'tag': 'test_tags.inclusion'})
 
         self.assertHTMLEqual(response.content.decode(), '<p>hello world</p>')
+
+    @override_settings(LAZY_TAGS_FORCE_LOGIN=True)
+    def test_force_login_not_logged_in(self):
+        url = reverse('lazy_tag')
+
+        response = self.client.get(url, {'tag': 'test_tags.inclusion'})
+
+        self.assertEqual(response.status_code, 403)
+
+    @override_settings(LAZY_TAGS_FORCE_LOGIN=True)
+    def test_force_login_logged_in(self):
+        user = User.objects.create_user('test',
+                                        'test@gmail.com',
+                                        'password')
+        self.client.login(username=user.username, password='password')
+        url = reverse('lazy_tag')
+
+        response = self.client.get(url, {'tag': 'test_tags.test'})
+
+        self.assertEqual(response.status_code, 200)
+        self.client.logout()
 
 
 class LazyTagsTests(TestCase):

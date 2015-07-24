@@ -8,14 +8,6 @@ django-lazy-tags
     :target: https://readthedocs.org/projects/django-lazy-tags/?badge=latest
     :alt: Documentation Status
 
-Example
--------
-
-.. image:: example.gif
-   :height: 180px
-   :width: 420px
-   :alt: django-lazy-tags example
-
 Installation
 ------------
 

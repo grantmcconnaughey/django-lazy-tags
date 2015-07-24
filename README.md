@@ -64,23 +64,22 @@ This will spit out the JavaScript:
 
 ```html
 <script type="text/javascript">
-    $(function() {
-        $.ajax({
-            type: "GET",
-            url: "{{ tag_url }}",
-            data: {
-                tag: "{{ data.tag }}",
-                args: JSON.stringify({{ tag.args }}),
-                kwargs: {{ tag.kwargs }},
-            },
-            success: function(data) {
-                $('#{{ tag_id }}-spinner').hide();
-                $('#{{ tag_id }}').replaceWith(data);
-            },
-            error: function(data) {
-                $('#{{ tag_id }}-spinner').hide();
-            }
-        });
+    $.ajax({
+        type: "GET",
+        url: "{{ tag_url }}",
+        data: {
+            tag: "{{ tag }}",
+            args: JSON.stringify({{ args }}),
+            kwargs: JSON.stringify({{ kwargs }}),
+        },
+        success: function(data) {
+            $('#{{ tag_id }}-spinner').hide();
+            $('#{{ tag_id }}').replaceWith(data);
+        },
+        error: function(data) {
+            $('#{{ tag_id }}-spinner').hide();
+            $('#{{ tag_id }}').replaceWith('{{ error_message }}');
+        }
     });
 </script>
 ```

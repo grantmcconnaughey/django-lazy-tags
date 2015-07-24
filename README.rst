@@ -68,27 +68,27 @@ After placing your template tags in the template you still need to specify where
 
 This will spit out the JavaScript:
 
-```html
-<script type="text/javascript">
-    $.ajax({
-        type: "GET",
-        url: "{{ tag_url }}",
-        data: {
-            tag: "{{ tag }}",
-            args: JSON.stringify({{ args }}),
-            kwargs: JSON.stringify({{ kwargs }}),
-        },
-        success: function(data) {
-            $('#{{ tag_id }}-spinner').hide();
-            $('#{{ tag_id }}').replaceWith(data);
-        },
-        error: function(data) {
-            $('#{{ tag_id }}-spinner').hide();
-            $('#{{ tag_id }}').replaceWith('{{ error_message }}');
-        }
-    });
-</script>
-```
+.. code-block:: html
+
+    <script type="text/javascript">
+        $.ajax({
+            type: "GET",
+            url: "{{ tag_url }}",
+            data: {
+                tag: "{{ tag }}",
+                args: JSON.stringify({{ args }}),
+                kwargs: JSON.stringify({{ kwargs }}),
+            },
+            success: function(data) {
+                $('#{{ tag_id }}-spinner').hide();
+                $('#{{ tag_id }}').replaceWith(data);
+            },
+            error: function(data) {
+                $('#{{ tag_id }}-spinner').hide();
+                $('#{{ tag_id }}').replaceWith('{{ error_message }}');
+            }
+        });
+    </script>
 
 Settings
 --------
@@ -102,16 +102,16 @@ Customizing the Loading Animation
 
 This is the default HTML on the page before the AJAX request completes:
 
-```html
-<div id="{id}" class="lazy-tag-replace">
-    <div class="lazy-tag-spinner-container"
-         style="width: 100%; text-align: center;">
-        <img id="{id}-spinner" class="lazy-tag-spinner"
-             style="width: 15px; height: 15px;"
-             src="{static_url}img/lazy_tags/spinner.gif" />
+.. code-block:: html
+
+    <div id="{id}" class="lazy-tag-replace">
+        <div class="lazy-tag-spinner-container"
+             style="width: 100%; text-align: center;">
+            <img id="{id}-spinner" class="lazy-tag-spinner"
+                 style="width: 15px; height: 15px;"
+                 src="{static_url}img/lazy_tags/spinner.gif" />
+        </div>
     </div>
-</div>
-```
 
 To customize the loading animation, override the `lazy-tag-replace`, `lazy-tag-spinner-container`, or `lazy-tag-spinner` classes in your CSS.
 

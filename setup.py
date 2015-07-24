@@ -23,7 +23,7 @@ setup(
     name='django-lazy-tags',
     version=find_version("lazy_tags", "__init__.py"),
     description="A Django app for lazy loading template tags over AJAX",
-    long_description=read('README.md'),
+    long_description=read('README.rst'),
     classifiers=[
         'Environment :: Web Environment',
         'Framework :: Django',

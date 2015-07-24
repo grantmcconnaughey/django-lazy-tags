@@ -14,7 +14,7 @@ class LazyTagsViewTests(TestCase):
 
         response = self.client.get(url, {'tag': 'test_tags.test'})
 
-        self.assertEqual(response.content, '<p>hello world</p>')
+        self.assertEqual(str(response.content), '<p>hello world</p>')
 
     def test_tag_with_just_args(self):
         url = reverse('lazy_tag')
@@ -26,7 +26,7 @@ class LazyTagsViewTests(TestCase):
         response = self.client.get(url, data)
 
         expected_html = '<p>hello</p>'
-        self.assertHTMLEqual(response.content, expected_html)
+        self.assertHTMLEqual(str(response.content), expected_html)
 
     def test_tag_with_args_and_kwargs(self):
         url = reverse('lazy_tag')
@@ -39,7 +39,7 @@ class LazyTagsViewTests(TestCase):
         response = self.client.get(url, data)
 
         expected_html = '<p>hello world</p>'
-        self.assertHTMLEqual(response.content, expected_html)
+        self.assertHTMLEqual(str(response.content), expected_html)
 
     def test_inclusion_tag(self):
         url = reverse('lazy_tag')
@@ -47,7 +47,7 @@ class LazyTagsViewTests(TestCase):
         response = self.client.get(url, {'tag': 'test_tags.inclusion'})
 
         expected_html = '<p>hello world</p>'
-        self.assertHTMLEqual(response.content, expected_html)
+        self.assertHTMLEqual(str(response.content), expected_html)
 
 
 class LazyTagsTests(TestCase):

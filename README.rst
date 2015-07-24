@@ -4,6 +4,10 @@ django-lazy-tags
 .. image:: https://travis-ci.org/grantmcconnaughey/django-lazy-tags.svg
     :target: https://travis-ci.org/grantmcconnaughey/django-lazy-tags
 
+.. image:: https://readthedocs.org/projects/django-lazy-tags/badge/?version=latest
+    :target: https://readthedocs.org/projects/django-lazy-tags/?badge=latest
+    :alt: Documentation Status
+
 Installation
 ------------
 

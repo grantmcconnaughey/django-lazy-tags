@@ -1,6 +1,9 @@
 django-lazy-tags
 ================
 
+.. image:: https://img.shields.io/pypi/v/django-lazy-tags.svg
+   :target: https://pypi.python.org/pypi/django-lazy-tags
+
 .. image:: https://travis-ci.org/grantmcconnaughey/django-lazy-tags.svg
     :target: https://travis-ci.org/grantmcconnaughey/django-lazy-tags
 

@@ -11,6 +11,8 @@ django-lazy-tags
     :target: https://readthedocs.org/projects/django-lazy-tags/?badge=latest
     :alt: Documentation Status
 
+A Django app for lazy lazy loading template tags over AJAX. Making your template tag a "lazy tag" will wait to render the tag until after the page has loaded.
+
 Installation
 ------------
 

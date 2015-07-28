@@ -11,13 +11,13 @@ django-lazy-tags
 Installation
 ------------
 
-1. Install via pip
+1\. Install via pip
 
 .. code-block:: python
 
     pip install django-lazy-tags
 
-2. Add to installed apps
+2\. Add to installed apps
 
 .. code-block:: python
 
@@ -26,7 +26,7 @@ Installation
         'lazy_tags',
     )
 
-3. Add the lazy tags urls to your root urlconf.
+3\. Add the lazy tags urls to your root urlconf.
 
 .. code-block:: python
 

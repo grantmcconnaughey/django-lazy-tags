@@ -21,8 +21,8 @@ def find_version(*file_paths):
 
 setup(
     name='django-lazy-tags',
-    version=find_version("lazy_tags", "__init__.py"),
-    description="A Django app for lazy loading template tags over AJAX",
+    version=find_version('lazy_tags', '__init__.py'),
+    description='A Django app for lazy loading template tags over AJAX',
     long_description=read('README.rst'),
     classifiers=[
         'Environment :: Web Environment',
@@ -33,6 +33,9 @@ setup(
         'Programming Language :: Python',
         'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.2',
+        'Programming Language :: Python :: 3.3',
+        'Programming Language :: Python :: 3.4',
     ],
     keywords='ajax, django, templatetag',
     author='Grant McConnaughey',

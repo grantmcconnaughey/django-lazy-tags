@@ -51,7 +51,7 @@ class LazyTagsViewTests(TestCase):
     def test_force_login_not_logged_in(self):
         url = reverse('lazy_tag')
 
-        response = self.client.get(url, {'tag': 'test_tags.inclusion'})
+        response = self.client.get(url, {'tag': 'test_tags.test'})
 
         self.assertEqual(response.status_code, 403)
 

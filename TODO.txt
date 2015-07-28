@@ -7,5 +7,5 @@ Someday
 * Work with Django models, not just pks
 * Send csrf_token
 * Add tag name whitelist to control which tags the view will send back html for
-* Make default spinner gif transparent
+* Make default spinner gif transparent (or just add setting for custom spinner)
 * Add setting to ues jQuery, Prototype, or plain JavaScript for the AJAX request

@@ -269,7 +269,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
   (master_doc, 'django-lazy-tags', u'django-lazy-tags Documentation',
-   author, 'django-lazy-tags', 'A Django app for lazy loading template tags over AJAX.',
+   author, 'django-lazy-tags', 'A Django app for loading template tags over AJAX after a page has loaded.',
    'Miscellaneous'),
 ]
 

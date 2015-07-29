@@ -1,4 +1,5 @@
 import json
+from collections import OrderedDict
 
 from django.utils import six
 
@@ -28,7 +29,7 @@ def get_tag_html(tag, args=None, kwargs=None):
 
     kwargs_str = ''
     if kwargs:
-        kwargs = json.loads(kwargs)
+        kwargs = OrderedDict(json.loads(kwargs))
         for name, value in kwargs.items():
             if isinstance(value, six.string_types):
                 kwargs_str += "{0}='{1}' ".format(name, value)

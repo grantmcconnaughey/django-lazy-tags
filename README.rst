@@ -131,6 +131,5 @@ Current Limitations
 -------------------
 
 * jQuery is required for the the AJAX calls. You must have jQuery loaded on the page before calling ``lazy_tags_js``.
-* Does not work with tags that take context
-* Template tag arguments must be serializable
-* Template tag arguments are always passed in as strings. If your tag requires an argument to be an ``int`` then be sure to cast it to an ``int`` before usage.
+* Does not work with tags that take context.
+* Template tag arguments must be serializable (str, unicode, int, float, etc.).

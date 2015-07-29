@@ -6,6 +6,7 @@ from django.test.utils import override_settings
 from django.core.urlresolvers import reverse
 
 from lazy_tags.templatetags import lazy_tags
+from lazy_tags.utils import get_tag_html
 
 
 class LazyTagsViewTests(TestCase):
@@ -90,3 +91,37 @@ class LazyTagsTests(TestCase):
         html = lazy_tags.lazy_tags_js(self.context)
 
         self.assertIn('<p>Custom error message!</p>', html)
+
+
+class LazyTagsUtilsTests(TestCase):
+
+    def test_get_tag_html_kwargs_works_with_strings(self):
+        html = get_tag_html('lib.tag_name', args=None,
+                            kwargs='{"test": "hello", "test2": "world"}')
+
+        self.assertEqual(html, "{% load lib %}{% tag_name test='hello' test2='world' %}")
+
+    def test_get_tag_html_kwargs_works_with_ints(self):
+        html = get_tag_html('lib.tag_name', args=None, kwargs='{"test": 123}')
+
+        self.assertEqual(html, "{% load lib %}{% tag_name test=123 %}")
+
+    def test_get_tag_html_kwargs_works_with_floats(self):
+        html = get_tag_html('lib.tag_name', args=None, kwargs='{"test": 1.23}')
+
+        self.assertEqual(html, "{% load lib %}{% tag_name test=1.23 %}")
+
+    def test_get_tag_html_args_works_with_strings(self):
+        html = get_tag_html('lib.tag_name', args='["hello", "world"]')
+
+        self.assertEqual(html, "{% load lib %}{% tag_name 'hello' 'world' %}")
+
+    def test_get_tag_html_args_works_with_ints(self):
+        html = get_tag_html('lib.tag_name', args='[123, 456]')
+
+        self.assertEqual(html, "{% load lib %}{% tag_name 123 456 %}")
+
+    def test_get_tag_html_args_works_with_ints(self):
+        html = get_tag_html('lib.tag_name', args='[1.23, 4.56]')
+
+        self.assertEqual(html, "{% load lib %}{% tag_name 1.23 4.56 %}")

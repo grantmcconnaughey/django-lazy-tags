@@ -97,9 +97,9 @@ class LazyTagsUtilsTests(TestCase):
 
     def test_get_tag_html_kwargs_works_with_strings(self):
         html = get_tag_html('lib.tag_name', args=None,
-                            kwargs='{"test": "hello", "test2": "world"}')
+                            kwargs='{"test": "hello"}')
 
-        self.assertEqual(html, "{% load lib %}{% tag_name test='hello' test2='world' %}")
+        self.assertEqual(html, "{% load lib %}{% tag_name test='hello' %}")
 
     def test_get_tag_html_kwargs_works_with_ints(self):
         html = get_tag_html('lib.tag_name', args=None, kwargs='{"test": 123}')

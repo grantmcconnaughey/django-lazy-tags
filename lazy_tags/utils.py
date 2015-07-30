@@ -4,7 +4,7 @@ from django.utils import six
 
 
 def get_cache_key(tag_id):
-    return 'lazy_tags_{}'.format(tag_id)
+    return 'lazy_tags_{0}'.format(tag_id)
 
 
 def set_lazy_tags_cache(tag_id, tag, args=None, kwargs=None):

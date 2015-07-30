@@ -1,0 +1,5 @@
+include README.rst
+include LICENSE.txt
+include lazy_tags/static/img/lazy_tags/default.jpg
+recursive-include docs *
+recursive-include lazy_tags/templates *.html

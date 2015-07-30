@@ -103,9 +103,6 @@ LAZY_TAGS_CACHE_TIMEOUT
 LAZY_TAGS_ERROR_MESSAGE
     The error message to display if the AJAX request fails. Defaults to ``'An error occurred.'``
 
-LAZY_TAGS_FORCE_LOGIN
-    ``True`` if you would like to require a user be logged in for django-lazy-tags to work. Defaults to ``False``.
-
 Customizing the Loading Animation
 ---------------------------------
 

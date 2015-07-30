@@ -60,31 +60,6 @@ class LazyTagsViewTests(TestCase):
 
     #     self.assertHTMLEqual(response.content.decode(), '<p>test | test@gmail.com</p>')
 
-    @override_settings(LAZY_TAGS_FORCE_LOGIN=True)
-    def test_force_login_not_logged_in(self):
-        tag_id = str(uuid.uuid4())
-        set_lazy_tags_cache(tag_id, 'test_tags.test')
-        url = reverse('lazy_tag', args=[tag_id])
-
-        response = self.client.get(url)
-
-        self.assertEqual(response.status_code, 403)
-
-    @override_settings(LAZY_TAGS_FORCE_LOGIN=True)
-    def test_force_login_logged_in(self):
-        user = User.objects.create_user('test',
-                                        'test@gmail.com',
-                                        'password')
-        self.client.login(username=user.username, password='password')
-        tag_id = str(uuid.uuid4())
-        set_lazy_tags_cache(tag_id, 'test_tags.test')
-        url = reverse('lazy_tag', args=[tag_id])
-
-        response = self.client.get(url)
-
-        self.assertEqual(response.status_code, 200)
-        self.client.logout()
-
 
 class LazyTagsTests(TestCase):
 

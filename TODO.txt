@@ -1,7 +1,4 @@
 Soon
-* Serialize data to cache and use UUID to retrieve it (fixes remote code execution problem)
-* Force login on a per tag basis (perhaps create a "secure_lazy_tag" tag)
-* Add tag name whitelist to control which tags the view will send back html for
 * Work with template tags in subfolders, e.g. {% from foo load bar %}
 
 

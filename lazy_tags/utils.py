@@ -4,6 +4,7 @@ from django.utils import six
 
 
 def get_cache_key(tag_id):
+    """Returns a cache key based on a tag id"""
     return 'lazy_tags_{0}'.format(tag_id)
 
 
@@ -29,6 +30,7 @@ def get_tag_html(tag_id):
     """
     key = get_cache_key(tag_id)
     tag_data = cache.get(key)
+    cache.delete(key)
     tag = tag_data['tag']
     args = tag_data['args']
     kwargs = tag_data['kwargs']

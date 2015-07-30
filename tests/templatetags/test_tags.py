@@ -24,6 +24,11 @@ def test_with_args(arg, kwarg=None):
     }
 
 
+@register.simple_tag
+def test_orm(user):
+    return '<p>{} | {}</p>'.format(user.username, user.email)
+
+
 @register.inclusion_tag('tests/inclusion_tag.html')
 def inclusion():
     return {'test': 'hello world'}

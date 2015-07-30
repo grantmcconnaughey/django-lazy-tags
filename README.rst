@@ -82,12 +82,7 @@ This will spit out the JavaScript:
     <script type="text/javascript">
         $.ajax({
             type: "GET",
-            url: "{{ tag_url }}",
-            data: {
-                tag: "{{ tag }}",
-                args: JSON.stringify({{ args }}),
-                kwargs: JSON.stringify({{ kwargs }}),
-            },
+            url: "{% url 'lazy_tag' tag_id %}",
             success: function(data) {
                 $('#{{ tag_id }}-spinner').hide();
                 $('#{{ tag_id }}').replaceWith(data);
@@ -102,6 +97,9 @@ This will spit out the JavaScript:
 Settings
 --------
 
+LAZY_TAGS_CACHE_TIMEOUT
+    The timeout on each lazy tag cache. Defaults to 3600 seconds (60 minutes).
+
 LAZY_TAGS_ERROR_MESSAGE
     The error message to display if the AJAX request fails. Defaults to ``'An error occurred.'``
 
@@ -115,10 +113,10 @@ This is the default HTML on the page before the AJAX request completes:
 
 .. code-block:: html
 
-    <div id="{id}" class="lazy-tag-replace">
+    <div id="{{ tag_id }}" class="lazy-tag-replace">
         <div class="lazy-tag-spinner-container"
              style="width: 100%; text-align: center;">
-            <img id="{id}-spinner" class="lazy-tag-spinner"
+            <img id="{{ tag_id }}-spinner" class="lazy-tag-spinner"
                  style="width: 15px; height: 15px;"
                  src="{static_url}img/lazy_tags/spinner.gif" />
         </div>

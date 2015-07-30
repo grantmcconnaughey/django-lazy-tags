@@ -1,15 +1,10 @@
 {% autoescape off %}
 <script type="text/javascript">
     $(function() {
-        {% for tag_id, data in lazy_tag_data.items %}
+        {% for tag_id in lazy_tag_ids %}
             $.ajax({
                 type: "GET",
-                url: "{{ tag_url }}",
-                data: {
-                    tag: "{{ data.tag }}",
-                    args: JSON.stringify({{ data.args }}),
-                    kwargs: JSON.stringify({{ data.kwargs }}),
-                },
+                url: "{% url 'lazy_tag' tag_id %}",
                 success: function(data) {
                     $('#{{ tag_id }}-spinner').hide();
                     $('#{{ tag_id }}').replaceWith(data);

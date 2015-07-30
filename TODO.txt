@@ -1,4 +1,7 @@
 Soon
+* Serialize data to cache and use UUID to retrieve it (fixes remote code execution problem)
+* Force login on a per tag basis (perhaps create a "secure_lazy_tag" tag)
+* Add tag name whitelist to control which tags the view will send back html for
 * Work with template tags in subfolders, e.g. {% from foo load bar %}
 
 
@@ -6,6 +9,4 @@ Someday
 * Work with a tag where takes_context = True
 * Work with Django models, not just pks
 * Send csrf_token
-* Add tag name whitelist to control which tags the view will send back html for
-* Make default spinner gif transparent (or just add setting for custom spinner)
 * Add setting to ues jQuery, Prototype, or plain JavaScript for the AJAX request

@@ -1,25 +1,42 @@
-import json
-
+from django.conf import settings
+from django.core.cache import cache
 from django.utils import six
 
 
-def get_tag_html(tag, args=None, kwargs=None):
+def get_cache_key(tag_id):
+    return 'lazy_tags_{}'.format(tag_id)
+
+
+def set_lazy_tags_cache(tag_id, tag, args=None, kwargs=None):
+    """Sets the lazy tags cache for an instance of a lazy tag."""
+    tag_context = {
+        'tag': tag,
+        'args': args,
+        'kwargs': kwargs,
+    }
+
+    key = get_cache_key(tag_id)
+    cache_timeout = getattr(settings, 'LAZY_TAGS_CACHE_TIMEOUT', 3600)
+    cache.set(key, tag_context, cache_timeout)
+
+
+def get_tag_html(tag_id):
     """
     Returns the Django HTML to load the tag library and render the tag.
 
     Args:
-        tag (str): The name of the tag following the 'tag_library.tag_name'
-            format.
-        args (str): The JSON encoded string representing the args that should
-            be passed to the template tag.
-        kwargs (str): The JSON encoded string representing the kwargs that
-            should be passed to the template tag.
+        tag_id (str): The tag id for the to return the HTML for.
     """
+    key = get_cache_key(tag_id)
+    tag_data = cache.get(key)
+    tag = tag_data['tag']
+    args = tag_data['args']
+    kwargs = tag_data['kwargs']
+
     lib, tag_name = tag.split('.')
 
     args_str = ''
     if args:
-        args = json.loads(args)
         for arg in args:
             if isinstance(arg, six.string_types):
                 args_str += "'{0}' ".format(arg)
@@ -28,7 +45,6 @@ def get_tag_html(tag, args=None, kwargs=None):
 
     kwargs_str = ''
     if kwargs:
-        kwargs = json.loads(kwargs)
         for name, value in kwargs.items():
             if isinstance(value, six.string_types):
                 kwargs_str += "{0}='{1}' ".format(name, value)

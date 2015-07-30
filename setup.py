@@ -1,11 +1,11 @@
 import codecs
 import re
-from os import path
-from setuptools import setup, find_packages
+import os
+from setuptools import setup, find_packages, Command
 
 
 def read(*parts):
-    filename = path.join(path.dirname(__file__), *parts)
+    filename = os.path.join(os.path.dirname(__file__), *parts)
     with codecs.open(filename, encoding='utf-8') as fp:
         return fp.read()
 
@@ -17,6 +17,20 @@ def find_version(*file_paths):
     if version_match:
         return version_match.group(1)
     raise RuntimeError("Unable to find version string.")
+
+
+class CleanCommand(Command):
+    """Custom clean command to tidy up the project root."""
+    user_options = []
+
+    def initialize_options(self):
+        pass
+
+    def finalize_options(self):
+        pass
+
+    def run(self):
+        os.system('rm -vrf ./build ./dist ./*.pyc ./*.tgz ./*.egg-info')
 
 
 setup(
@@ -44,4 +58,7 @@ setup(
     license='MIT',
     packages=find_packages(exclude=['tests']),
     install_requires=[],
+    cmdclass={
+        'clean': CleanCommand,
+    },
 )

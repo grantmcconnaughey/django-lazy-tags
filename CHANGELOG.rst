@@ -1,6 +1,9 @@
 Changelog
 =========
 
+* 0.2.1 (July 31, 2015)
+    * Fixed issue where templates were not on PyPI.
+
 * 0.2.0 (July 30, 2015)
     * Use Django cache instead of URL parameters in order to prevent potential remote code execution.
     * Fixed issue where tags with multiple args would not work.

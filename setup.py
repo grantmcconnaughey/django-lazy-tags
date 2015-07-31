@@ -58,6 +58,7 @@ setup(
     url='https://github.com/grantmcconnaughey/django-lazy-tags/',
     license='MIT',
     packages=find_packages(exclude=['tests']),
+    include_package_data=True,
     install_requires=[],
     cmdclass={
         'clean': CleanCommand,

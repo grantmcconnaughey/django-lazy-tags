@@ -1,0 +1,21 @@
+{% load lazy_tags %}
+
+<div>
+    <h2>Test</h2>
+    {% lazy_tag 'test_tags.test' %}
+</div>
+
+<div>
+    <h2>Tag with lots of queries</h2>
+    {% lazy_tag 'test_tags.test_with_sleep' %}
+</div>
+
+<div>
+    <h2>Test with args</h2>
+    {% lazy_tag 'test_tags.test_with_args' 123 kwarg='hello' %}
+</div>
+
+<div>
+    <h2>Test with errors</h2>
+    {% lazy_tag 'test_tags.test_with_args' %}
+</div>

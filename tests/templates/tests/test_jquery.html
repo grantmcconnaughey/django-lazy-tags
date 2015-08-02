@@ -19,25 +19,7 @@
 <body>
     <h1>Lazy tags tests (jQuery)</h1>
 
-    <div>
-        <h2>Test</h2>
-        {% lazy_tag 'test_tags.test' %}
-    </div>
-
-    <div>
-        <h2>Tag with lots of queries</h2>
-        {% lazy_tag 'test_tags.test_with_sleep' %}
-    </div>
-
-    <div>
-        <h2>Test with args</h2>
-        {% lazy_tag 'test_tags.test_with_args' 123 kwarg='hello' %}
-    </div>
-
-    <div>
-        <h2>Test with errors</h2>
-        {% lazy_tag 'test_tags.test_with_args' %}
-    </div>
+    {% include "tests/_tags.html" %}
 
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     {% lazy_tags_js %}

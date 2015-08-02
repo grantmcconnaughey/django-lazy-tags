@@ -111,6 +111,5 @@ To customize the loading animation, override the ``lazy-tag``, ``lazy-tag-spinne
 Current Limitations
 -------------------
 
-* jQuery is required for the the AJAX calls. You must have jQuery loaded on the page before calling ``lazy_tags_js``.
 * Does not work with tags that take context.
 * Template tag arguments must be serializable (str, unicode, int, float, etc.).

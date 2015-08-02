@@ -1,0 +1,18 @@
+<script type="text/javascript">
+    document.observe('dom:loaded', function() {
+        $$('.lazy-tag').each(function(tag) {
+            var tag_id = tag.readAttribute('id');
+            var url = '/lazy_tags/tag/' + tag_id;
+
+            new Ajax.Request(url, {
+                method: 'get',
+                onSuccess: function(response) {
+                    $(tag_id).replace(response.responseText);
+                },
+                onFailure: function(response) {
+                    $(tag_id).replace('{{ error_message|safe }}');
+                }
+            });
+        });
+    });
+</script>

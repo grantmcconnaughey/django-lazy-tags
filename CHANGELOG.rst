@@ -1,8 +1,11 @@
 Changelog
 =========
 
-* 0.2.1 (July 31, 2015)
-    * Fixed issue where templates were not on PyPI.
+* 0.3.0 (not released)
+    * Added setting to use jQuery, Prototype, or pure JavaScript for AJAX
+
+* 0.2.1-0.2.3 (July 31, 2015)
+    * Fixed MANIFEST.in [#]_
 
 * 0.2.0 (July 30, 2015)
     * Use Django cache instead of URL parameters in order to prevent potential remote code execution.
@@ -12,3 +15,5 @@ Changelog
 
 * 0.1 (July 28, 2015)
     * Initial alpha release
+
+.. [#] `"Every Python project has a "Fix MANIFEST.in" commit. Look it up, it’s true." <https://hynek.me/articles/sharing-your-labor-of-love-pypi-quick-and-dirty/>`_

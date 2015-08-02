@@ -75,30 +75,16 @@ After placing your template tags in the template you still need to specify where
       {% lazy_tags_js%}
     {% endblock %}
 
-This will spit out the JavaScript:
-
-.. code-block:: html
-
-    <script type="text/javascript">
-        $.ajax({
-            type: "GET",
-            url: "{% url 'lazy_tag' tag_id %}",
-            success: function(data) {
-                $('#{{ tag_id }}-spinner').hide();
-                $('#{{ tag_id }}').replaceWith(data);
-            },
-            error: function(data) {
-                $('#{{ tag_id }}-spinner').hide();
-                $('#{{ tag_id }}').replaceWith('{{ error_message }}');
-            }
-        });
-    </script>
+This will spit out the JavaScript required to run the AJAX. The JavaScript changes depending on your ``LAZY_TAGS_AJAX_JS`` setting.
 
 Settings
 --------
 
+LAZY_TAGS_AJAX_JS
+    The library to use to run AJAX. Options are ``'javascript'``, ``'jquery'``, or ``'prototype'``. Defaults to ``'jquery'``.
+
 LAZY_TAGS_CACHE_TIMEOUT
-    The timeout on each lazy tag cache. Defaults to 3600 seconds (60 minutes).
+    The timeout on each lazy tag cache. Defaults to ``3600`` seconds (60 minutes).
 
 LAZY_TAGS_ERROR_MESSAGE
     The error message to display if the AJAX request fails. Defaults to ``'An error occurred.'``
@@ -110,7 +96,7 @@ This is the default HTML on the page before the AJAX request completes:
 
 .. code-block:: html
 
-    <div id="{{ tag_id }}" class="lazy-tag-replace">
+    <div id="{{ tag_id }}" class="lazy-tag">
         <div class="lazy-tag-spinner-container"
              style="width: 100%; text-align: center;">
             <img id="{{ tag_id }}-spinner" class="lazy-tag-spinner"
@@ -119,7 +105,7 @@ This is the default HTML on the page before the AJAX request completes:
         </div>
     </div>
 
-To customize the loading animation, override the ``lazy-tag-replace``, ``lazy-tag-spinner-container``, or ``lazy-tag-spinner`` classes in your CSS.
+To customize the loading animation, override the ``lazy-tag``, ``lazy-tag-spinner-container``, or ``lazy-tag-spinner`` classes in your CSS.
 
 
 Current Limitations

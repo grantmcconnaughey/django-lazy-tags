@@ -63,19 +63,14 @@ class LazyTagsViewTests(TestCase):
 
 class LazyTagsTests(TestCase):
 
-    def setUp(self):
-        self.context = {
-            'lazy_tag_ids': ['lazy_tags_123', 'lazy_tags_456']
-        }
-
     def test_default_error_message(self):
-        html = lazy_tags.lazy_tags_js(self.context)
+        html = lazy_tags.lazy_tags_js()
 
         self.assertIn('An error occurred.', html)
 
     @override_settings(LAZY_TAGS_ERROR_MESSAGE='<p>Custom error message!</p>')
     def test_custom_error_message(self):
-        html = lazy_tags.lazy_tags_js(self.context)
+        html = lazy_tags.lazy_tags_js()
 
         self.assertIn('<p>Custom error message!</p>', html)
 

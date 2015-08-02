@@ -1,6 +1,12 @@
+import uuid
+
 from django.conf import settings
 from django.core.cache import cache
 from django.utils import six
+
+
+def get_tag_id():
+    return str(uuid.uuid4())
 
 
 def get_cache_key(tag_id):

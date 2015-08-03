@@ -6,7 +6,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.core.urlresolvers import reverse
 
-from ..utils import get_tag_id, set_lazy_tags_cache
+from ..utils import get_tag_id, set_lazy_tag_data
 
 
 register = template.Library()
@@ -31,7 +31,7 @@ def lazy_tag(tag, *args, **kwargs):
         **kwargs:  keyword arguments to be passed to the template tag.
     """
     tag_id = get_tag_id()
-    set_lazy_tags_cache(tag_id, tag, args, kwargs)
+    set_lazy_tag_data(tag_id, tag, args, kwargs)
 
     return render_to_string('lazy_tags/lazy_tag.html', {
         'tag_id': tag_id,

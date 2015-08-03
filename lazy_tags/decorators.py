@@ -3,7 +3,7 @@ from functools import wraps
 from django.conf import settings
 from django.template.loader import render_to_string
 
-from .utils import get_tag_id, set_lazy_tags_cache
+from .utils import get_tag_id, set_lazy_tag_data
 
 
 def lazy_tag(func=None):
@@ -20,7 +20,7 @@ def lazy_tag(func=None):
             # time this is called
             kwargs['render_tag'] = True
             tag_id = get_tag_id()
-            set_lazy_tags_cache(tag_id, tag, args, kwargs)
+            set_lazy_tag_data(tag_id, tag, args, kwargs)
 
             return render_to_string('lazy_tags/lazy_tag.html', {
                 'tag_id': tag_id,

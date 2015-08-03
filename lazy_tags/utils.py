@@ -14,8 +14,7 @@ def get_cache_key(tag_id):
     return 'lazy_tags_{0}'.format(tag_id)
 
 
-def set_lazy_tags_cache(tag_id, tag, args=None, kwargs=None):
-    """Sets the lazy tags cache for an instance of a lazy tag."""
+def set_lazy_tag_data(tag_id, tag, args=None, kwargs=None):
     tag_context = {
         'tag': tag,
         'args': args,
@@ -27,6 +26,13 @@ def set_lazy_tags_cache(tag_id, tag, args=None, kwargs=None):
     cache.set(key, tag_context, cache_timeout)
 
 
+def get_lazy_tag_data(tag_id):
+    key = get_cache_key(tag_id)
+    tag_data = cache.get(key)
+    cache.delete(key)
+    return tag_data
+
+
 def get_tag_html(tag_id):
     """
     Returns the Django HTML to load the tag library and render the tag.
@@ -34,9 +40,7 @@ def get_tag_html(tag_id):
     Args:
         tag_id (str): The tag id for the to return the HTML for.
     """
-    key = get_cache_key(tag_id)
-    tag_data = cache.get(key)
-    cache.delete(key)
+    tag_data = get_lazy_tag_data(tag_id)
     tag = tag_data['tag']
     args = tag_data['args']
     kwargs = tag_data['kwargs']

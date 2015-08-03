@@ -77,6 +77,25 @@ After placing your template tags in the template you still need to specify where
 
 This will spit out the JavaScript required to run the AJAX. The JavaScript changes depending on your ``LAZY_TAGS_AJAX_JS`` setting.
 
+The lazy_tag decorator
+----------------------
+
+django-lazy-tags also includes a decorator that can be used on template tags that use ``simple_tag``. When using the ``lazy_tag`` decorator you can use your template tags exactly the same as before and they will use AJAX.
+
+.. code-block:: python
+
+    from lazy_tags.decorators import lazy_tag
+
+    @register.simple_tag
+    @lazy_tag
+    def show_user(pk):
+        user = User.objects.get(pk=pk)
+        return render_to_string('user/show_user.html', {
+            'user': user,
+        })
+
+There are a few caveats with this method. First, the decorator currently only works with tags that use ``simple_tag``. Hopefully this will work with ``inclusion_tag`` in the future. Secondly, the ``lazy_tag`` decorator must come *after* the ``simple_tag`` decorator.
+
 Settings
 --------
 
@@ -84,7 +103,7 @@ LAZY_TAGS_AJAX_JS
     The library to use to run AJAX. Options are ``'javascript'``, ``'jquery'``, or ``'prototype'``. Defaults to ``'jquery'``.
 
 LAZY_TAGS_CACHE_TIMEOUT
-    The timeout on each lazy tag cache. Defaults to ``3600`` seconds (60 minutes).
+    The timeout on each lazy tag cache. Defaults to ``60`` seconds (60 seconds).
 
 LAZY_TAGS_ERROR_MESSAGE
     The error message to display if the AJAX request fails. Defaults to ``'An error occurred.'``

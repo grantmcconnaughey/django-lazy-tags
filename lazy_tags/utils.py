@@ -23,7 +23,7 @@ def set_lazy_tags_cache(tag_id, tag, args=None, kwargs=None):
     }
 
     key = get_cache_key(tag_id)
-    cache_timeout = getattr(settings, 'LAZY_TAGS_CACHE_TIMEOUT', 3600)
+    cache_timeout = getattr(settings, 'LAZY_TAGS_CACHE_TIMEOUT', 60)
     cache.set(key, tag_context, cache_timeout)
 
 

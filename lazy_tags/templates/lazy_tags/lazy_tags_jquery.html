@@ -3,9 +3,11 @@
         $('.lazy-tag').each(function(i, elem) {
             var tag = $(elem);
             var tag_id = tag.attr('id');
+            var url = '/lazy_tags/tag/' + tag_id;
+
             $.ajax({
                 type: 'GET',
-                url: '/lazy_tags/tag/' + tag_id,
+                url: url,
                 success: function(data) {
                     $('#' + tag_id).replaceWith(data);
                 },

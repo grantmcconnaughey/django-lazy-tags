@@ -1,4 +1,5 @@
 {% load lazy_tags %}
+{% load test_tags %}
 
 <div>
     <h2>Test</h2>
@@ -18,4 +19,14 @@
 <div>
     <h2>Test with errors</h2>
     {% lazy_tag 'test_tags.test_with_args' %}
+</div>
+
+<div>
+    <h2>Test simple with decorator</h2>
+    {% test_decorator %}
+</div>
+
+<div>
+    <h2>Test simple with decorator and args</h2>
+    {% test_simple_dec_args 123 kwarg='hello' %}
 </div>

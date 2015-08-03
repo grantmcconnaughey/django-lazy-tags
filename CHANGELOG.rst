@@ -2,6 +2,7 @@ Changelog
 =========
 
 * 0.3.0 (not released)
+    * Add lazy_tag decorator.
     * Added setting to use jQuery, Prototype, or pure JavaScript for AJAX
 
 * 0.2.1-0.2.3 (July 31, 2015)

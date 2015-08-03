@@ -1,12 +1,6 @@
 Soon
 * Work with template tags in subfolders, e.g. {% from foo load bar %}
-* Change usage to a decorator. Example:
-
-@register.simple_tag
-@lazy_tag
-def my_expensive_tag():
-    # lots of expensive stuff
-    pass
+* Make decorator work with inclusion_tag
 
 
 Someday

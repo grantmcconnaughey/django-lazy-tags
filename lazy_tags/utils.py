@@ -33,6 +33,19 @@ def get_lazy_tag_data(tag_id):
     return tag_data
 
 
+def get_lib_and_tag_name(tag):
+    """
+    Takes a tag string and returns the tag library and tag name. For example,
+    "app_tags.tag_name" is returned as "app_tags", "tag_name" and
+    "app_tags.sub.tag_name" is returned as "app_tags.sub", "tag_name"
+    """
+    if '.' not in tag:
+        raise ValueError('Tag string must be in the format "tag_lib.tag_name"')
+    lib = tag.rpartition('.')[0]
+    tag_name = tag.rpartition('.')[-1]
+    return lib, tag_name
+
+
 def get_tag_html(tag_id):
     """
     Returns the Django HTML to load the tag library and render the tag.
@@ -44,8 +57,7 @@ def get_tag_html(tag_id):
     tag = tag_data['tag']
     args = tag_data['args']
     kwargs = tag_data['kwargs']
-
-    lib, tag_name = tag.split('.')
+    lib, tag_name = get_lib_and_tag_name(tag)
 
     args_str = ''
     if args:

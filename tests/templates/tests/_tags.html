@@ -30,3 +30,8 @@
     <h2>Test simple with decorator and args</h2>
     {% test_simple_dec_args 123 kwarg='hello' %}
 </div>
+
+<div>
+    <h2>Test nested tag</h2>
+    {% lazy_tag 'tests.nested_tags.test_nested' %}
+</div>

@@ -6,7 +6,9 @@ from django.test.utils import override_settings
 from django.core.urlresolvers import reverse
 
 from lazy_tags.templatetags import lazy_tags
-from lazy_tags.utils import get_tag_html, set_lazy_tag_data
+from lazy_tags.utils import (
+    get_tag_html, set_lazy_tag_data, get_lib_and_tag_name
+)
 
 
 class LazyTagsViewTests(TestCase):
@@ -32,7 +34,7 @@ class LazyTagsViewTests(TestCase):
     def test_tag_with_args_and_kwargs(self):
         tag_id = str(uuid.uuid4())
         set_lazy_tag_data(tag_id, 'test_tags.test_with_args',
-                            ['hello'], {'kwarg': 'world'})
+                          ['hello'], {'kwarg': 'world'})
         url = reverse('lazy_tag', args=[tag_id])
 
         response = self.client.get(url)
@@ -47,18 +49,6 @@ class LazyTagsViewTests(TestCase):
         response = self.client.get(url)
 
         self.assertHTMLEqual(response.content.decode(), '<p>hello world</p>')
-
-    # def test_tag_with_django_orm(self):
-    #     user = User.objects.create_user('test',
-    #                                     'test@gmail.com',
-    #                                     'password')
-    #     tag_id = str(uuid.uuid4())
-    #     set_lazy_tag_data(tag_id, 'test_tags.test_orm', [user])
-    #     url = reverse('lazy_tag', args=[tag_id])
-
-    #     response = self.client.get(url)
-
-    #     self.assertHTMLEqual(response.content.decode(), '<p>test | test@gmail.com</p>')
 
 
 class LazyTagsTests(TestCase):
@@ -124,3 +114,25 @@ class LazyTagsUtilsTests(TestCase):
         html = get_tag_html(tag_id)
 
         self.assertEqual(html, "{% load lib %}{% tag_name 1.23 4.56 %}")
+
+    def test_get_lib_and_tag_name_regular_template_tag(self):
+        tag = 'test_lib.test_tag'
+
+        lib, tag_name = get_lib_and_tag_name(tag)
+
+        self.assertEqual(lib, 'test_lib')
+        self.assertEqual(tag_name, 'test_tag')
+
+    def test_get_lib_and_tag_name_sub_package(self):
+        tag = 'test_lib.sub.test_tag'
+
+        lib, tag_name = get_lib_and_tag_name(tag)
+
+        self.assertEqual(lib, 'test_lib.sub')
+        self.assertEqual(tag_name, 'test_tag')
+
+    def test_get_lib_and_tag_name_requires_correct_format(self):
+        tag = 'fail'
+
+        with self.assertRaises(ValueError):
+            lib, tag_name = get_lib_and_tag_name(tag)

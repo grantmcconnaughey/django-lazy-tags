@@ -12,5 +12,8 @@ publish:
 	python setup.py sdist bdist_wheel
 	twine upload dist/*
 
+clean:
+	rm -vrf ./build ./dist ./*.pyc ./*.tgz ./*.egg-info
+
 runserver:
 	`which django-admin.py` runserver

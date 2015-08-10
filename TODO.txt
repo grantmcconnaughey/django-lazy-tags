@@ -1,6 +1,5 @@
 Soon
-* Work with template tags in subfolders, e.g. {% from foo load bar %}
-* Make decorator work with inclusion_tag
+* Make lazy_tag decorator work with inclusion_tag
 
 
 Someday

@@ -8,7 +8,7 @@ django-lazy-tags
     :target: https://travis-ci.org/grantmcconnaughey/django-lazy-tags
 
 .. image:: https://readthedocs.org/projects/django-lazy-tags/badge/?version=latest
-    :target: https://readthedocs.org/projects/django-lazy-tags/?badge=latest
+    :target: http://django-lazy-tags.readthedocs.org/en/latest/
     :alt: Documentation Status
 
 A Django app for loading template tags over AJAX after a page has loaded.
@@ -103,7 +103,7 @@ LAZY_TAGS_AJAX_JS
     The library to use to run AJAX. Options are ``'javascript'``, ``'jquery'``, or ``'prototype'``. Defaults to ``'jquery'``.
 
 LAZY_TAGS_CACHE_TIMEOUT
-    The timeout on each lazy tag cache. Defaults to ``60`` seconds (60 seconds).
+    The timeout on each lazy tag cache. Defaults to ``60`` (seconds).
 
 LAZY_TAGS_ERROR_MESSAGE
     The error message to display if the AJAX request fails. Defaults to ``'An error occurred.'``

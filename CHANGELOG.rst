@@ -1,7 +1,7 @@
 Changelog
 =========
 
-* 0.3.1 (Not released)
+* 0.3.1 (August 9, 2015)
     * Works with template tags in subpackages, e.g. {% load foo.bar %}
 
 * 0.3.0 (August 3, 2015)

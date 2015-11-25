@@ -1,6 +1,12 @@
 Changelog
 =========
 
+* 0.4.0 (Not released)
+    * Added Python 3.5 support
+    * Added Django 1.9 support
+    * Removed Python 2.6 support
+    * Removed Django 1.4, 1.5, and 1.6 support
+
 * 0.3.1 (August 9, 2015)
     * Works with template tags in subpackages, e.g. {% load foo.bar %}
 

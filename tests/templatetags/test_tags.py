@@ -1,4 +1,5 @@
 from django import template
+from django.utils.safestring import mark_safe
 
 from lazy_tags.decorators import lazy_tag
 
@@ -8,7 +9,7 @@ register = template.Library()
 
 @register.simple_tag
 def test():
-    return '<p>hello world</p>'
+    return mark_safe('<p>hello world</p>')
 
 
 @register.simple_tag

@@ -1,7 +1,7 @@
 Changelog
 =========
 
-* 0.4.0 (Not released)
+* 0.4.0 (December 2, 2015)
     * Added Python 3.5 support
     * Added Django 1.9 support
     * Removed Python 2.6 support

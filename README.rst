@@ -11,7 +11,7 @@ django-lazy-tags
     :target: http://django-lazy-tags.readthedocs.org/en/latest/
     :alt: Documentation Status
 
-A Django app for loading template tags over AJAX after a page has loaded.
+A Django app for easily loading template tags via AJAX.
 
 Installation
 ------------

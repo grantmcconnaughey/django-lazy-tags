@@ -2,7 +2,7 @@ from functools import wraps
 
 from django.conf import settings
 from django.template.loader import render_to_string
-from djang.utils import six
+from django.utils import six
 
 from .utils import get_tag_id, set_lazy_tag_data
 

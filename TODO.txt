@@ -1,5 +1,6 @@
 Soon
 * Make lazy_tag decorator work with inclusion_tag
+* Don't hardcode lazy tag view URL in JavaScript
 
 
 Someday

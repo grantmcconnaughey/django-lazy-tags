@@ -2,8 +2,16 @@ from functools import wraps
 
 from django.conf import settings
 from django.template.loader import render_to_string
+from djang.utils import six
 
 from .utils import get_tag_id, set_lazy_tag_data
+
+
+def _get_func_name(func):
+    if six.PY2:
+        return func.func_name
+    else:
+        return func.__name__
 
 
 def lazy_tag(func=None):
@@ -17,7 +25,7 @@ def lazy_tag(func=None):
             # Set render_tag in the kwargs so the tag will be rendered next
             # time this is called
             tag_lib = func.__module__.partition('templatetags.')[-1]
-            tag_name = func.func_name
+            tag_name = _get_func_name(func)
             tag = tag_lib + '.' + tag_name
             kwargs['render_tag'] = True
             tag_id = get_tag_id()

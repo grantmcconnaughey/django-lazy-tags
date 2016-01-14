@@ -10,3 +10,4 @@ avatars
 .coverage
 docs/_build
 tests/test_static/
+htmlcov/

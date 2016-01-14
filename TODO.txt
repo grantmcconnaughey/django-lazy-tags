@@ -1,7 +1,7 @@
 Soon
 * Make lazy_tag decorator work with inclusion_tag
 * Don't hardcode lazy tag view URL in JavaScript
-
+* Transparent AJAX spinner
 
 Someday
 * Work with a tag where takes_context = True

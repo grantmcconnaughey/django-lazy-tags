@@ -4,12 +4,15 @@ django-lazy-tags
 .. image:: https://img.shields.io/pypi/v/django-lazy-tags.svg
    :target: https://pypi.python.org/pypi/django-lazy-tags
 
-.. image:: https://travis-ci.org/grantmcconnaughey/django-lazy-tags.svg
-    :target: https://travis-ci.org/grantmcconnaughey/django-lazy-tags
-
 .. image:: https://readthedocs.org/projects/django-lazy-tags/badge/?version=latest
     :target: http://django-lazy-tags.readthedocs.org/en/latest/
     :alt: Documentation Status
+
+.. image:: https://travis-ci.org/grantmcconnaughey/django-lazy-tags.svg
+    :target: https://travis-ci.org/grantmcconnaughey/django-lazy-tags
+
+.. image:: https://coveralls.io/repos/grantmcconnaughey/django-lazy-tags/badge.svg?branch=master&service=github
+  :target: https://coveralls.io/github/grantmcconnaughey/django-lazy-tags?branch=master
 
 A Django app for easily loading template tags via AJAX.
 

@@ -10,6 +10,8 @@ from lazy_tags.utils import (
     get_tag_html, set_lazy_tag_data, get_lib_and_tag_name
 )
 
+from .templatetags import test_tags
+
 
 class LazyTagsViewTests(TestCase):
 
@@ -63,6 +65,18 @@ class LazyTagsTests(TestCase):
         html = lazy_tags.lazy_tags_js()
 
         self.assertIn('<p>Custom error message!</p>', html)
+
+    def test_decorated_tag_renders_html(self):
+        result = test_tags.test_simple_dec_args(1, kwarg='hello')
+
+        self.assertIn('class="lazy-tag"', result)
+        self.assertIn('class="lazy-tag-spinner-container"', result)
+
+    def test_decorated_tag_with_render_tag_renders_tag(self):
+        result = test_tags.test_simple_dec_args(1, kwarg='hello',
+                                                render_tag=True)
+
+        self.assertEqual(result, '1 hello')
 
 
 class LazyTagsUtilsTests(TestCase):

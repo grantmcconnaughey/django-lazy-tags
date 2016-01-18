@@ -25,9 +25,12 @@ setup(
     description='A Django app for lazy loading template tags over AJAX',
     long_description=read('README.rst'),
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
         'Environment :: Web Environment',
         'Framework :: Django',
+        'Framework :: Django :: 1.7',
+        'Framework :: Django :: 1.8',
+        'Framework :: Django :: 1.9',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',

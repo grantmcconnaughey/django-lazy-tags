@@ -11,3 +11,6 @@ avatars
 docs/_build
 tests/test_static/
 htmlcov/
+*.geany
+*.out
+.env

@@ -1,10 +1,6 @@
-import json
-
 from django import template
 from django.template.loader import render_to_string
 from django.conf import settings
-from django.core.cache import cache
-from django.core.urlresolvers import reverse
 
 from ..utils import get_tag_id, set_lazy_tag_data
 

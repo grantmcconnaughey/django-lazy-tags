@@ -1,6 +1,9 @@
 Changelog
 =========
 
+* 0.5.0 (February 3, 2018)
+    * Added Django 1.10 and 1.11 support.
+
 * 0.4.1 (January 17, 2016)
     * Made lazy tag URL not hardcoded in JavaScript.
     * Fixed Python 3 bug when using lazy_tag decorator.

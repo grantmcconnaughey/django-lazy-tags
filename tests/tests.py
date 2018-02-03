@@ -3,7 +3,10 @@ import uuid
 from django.contrib.auth.models import User
 from django.test import TestCase
 from django.test.utils import override_settings
-from django.core.urlresolvers import reverse
+try:
+    from django.urls import reverse
+except ImportError:
+    from django.core.urlresolvers import reverse
 
 from lazy_tags.templatetags import lazy_tags
 from lazy_tags.utils import (

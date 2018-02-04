@@ -1,6 +1,5 @@
 from django import template
-from django.conf import settings
-from django.http import HttpResponse, HttpResponseForbidden
+from django.http import HttpResponse
 
 from .utils import get_tag_html
 

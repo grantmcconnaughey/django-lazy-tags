@@ -4,6 +4,7 @@ export PYTHONPATH=.
 .PHONY: test
 
 test:
+	flake8 lazy_tags
 	coverage run --source=lazy_tags `which django-admin.py` test tests
 	coverage report
 

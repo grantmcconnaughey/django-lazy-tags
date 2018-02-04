@@ -36,7 +36,9 @@ def lazy_tag(tag, *args, **kwargs):
 
 
 def _render_js(library):
-    error_message = getattr(settings, 'LAZY_TAGS_ERROR_MESSAGE', 'An error occurred.')
+    error_message = getattr(settings,
+                            'LAZY_TAGS_ERROR_MESSAGE',
+                            'An error occurred.')
     template = 'lazy_tags/lazy_tags_{0}.html'.format(library)
 
     return render_to_string(template, {

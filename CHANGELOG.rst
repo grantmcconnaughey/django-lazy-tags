@@ -3,6 +3,8 @@ Changelog
 
 * 0.5.0 (February 3, 2018)
     * Added Django 1.10, 1.11, and 2.0 support.
+    * Removed Python 3.2 and 3.3 support.
+    * Removed Django 1.7 and 1.8 support.
 
 * 0.4.1 (January 17, 2016)
     * Made lazy tag URL not hardcoded in JavaScript.
